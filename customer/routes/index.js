@@ -16,7 +16,7 @@ router.get('/category', function(req, res, next) {
   res.render('category', { title: 'Category' });
 });
 
-router.get('/singleproduct', function(req, res, next) {
+router.get('/category/singleproduct', function(req, res, next) {
   res.render('singleproduct', { title: 'Single-Product' });
 });
 
