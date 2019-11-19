@@ -17,34 +17,6 @@ var categoryschema = new mongoose.Schema({
 
   });
 
-//load data
-// const cate = db.useDb("mydb").model("cate",categoryschema);
-// router.get('/', function (req, res) { 
-//   if(typeof req.query.q ==='undefined')
-//   {
-//     cate.find({}, function (err, value) {
-//           if (err) {
-//               console.log(err);
-//           } else {
-//             console.log("get data successfully");
-//               res.render('category', { list: value })
-//           }
-//       })
-//   }
-// else{
-//   cate.find({'categoryid':req.query.q}, function (err, value) {
-//   if (err) {
-//       console.log(err);
-//   } else {
-//     console.log("query la:" + req.query.q);
-//       res.render('category', { list: value })
-//   }
-// })
-// }
-// })
-
-
-//load data
 const cate = db.useDb("mydb").model("cate", categoryschema);
 router.get('/', async (req, res) => {
   let value
@@ -61,7 +33,7 @@ router.get('/', async (req, res) => {
   }
   else {
     try {
-      value = await cate.find({ 'categoryid': req.query.q })
+      value = await cate.find({ 'categoryid': req.query.q})
     } catch (error) {
       console.log("loi roi");
       res.render('error');
@@ -74,16 +46,6 @@ router.get('/', async (req, res) => {
 
   }
 })
-
-// cate.find({}, function (err, value) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//       console.log("get data successfully");
-//         res.render('category', { list: value })
-//     }
-// })
-// })
 
 module.exports = router;
 
