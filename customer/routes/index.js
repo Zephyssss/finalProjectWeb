@@ -12,13 +12,11 @@ router.get('/users', function(req, res, next) {
 });
 
 /* GET Category page. */
-router.get('/category', function(req, res, next) {
-  res.render('category', { title: 'Category' });
-});
 
-router.get('/category/singleproduct', function(req, res, next) {
-  res.render('singleproduct', { title: 'Single-Product' });
-});
+
+// router.get('/category/singleproduct', function(req, res, next) {
+//   res.render('singleproduct', { title: 'Single-Product' });
+// });
 
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Login' });

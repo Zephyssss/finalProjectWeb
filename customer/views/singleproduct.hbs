@@ -21,8 +21,12 @@
         <div class="col-lg-5">
           <div class="product_slider_img">
             <div id="vertical">
-              <div data-thumb="../img/product_details/prodect_details_1.png">
-                <img src="../img/product_details/prodect_details_1.png" />
+              {{!-- <div data-thumb="../img/product_details/prodect_details_1.png"> --}}
+              <div data-thumb="{{value.img}}">
+
+                {{!-- <img src="../img/product_details/prodect_details_1.png" /> --}}
+                 <img src="{{value.img}}" /> 
+
               </div>
               <div data-thumb="../img/product_details/prodect_details_2.png">
                 <img src="../img/product_details/prodect_details_2.png"/>
@@ -38,19 +42,19 @@
         </div>
         <div class="col-lg-5 offset-lg-1">
           <div class="s_product_text">
-            <h3>Quần jean rách SkyBlu</h3>
-            <h2>$149.99</h2>
+            <h3>{{value.name}}</h3>
+            <h2>{{value.price}} $</h2>
             <ul class="list">
               <li>
                 <a class="active" href="#">
-                  <span>Danh mục</span> : Hộ gia đình</a>
+                  <span>Danh mục</span> {{value.category}}</a>
               </li>
               <li>
                 <a href="#"> <span>Có sẵn</span> : Còn hàng</a>
               </li>
             </ul>
             <p>
-                Mill Oil là một bộ tản nhiệt đầy dầu sáng tạo với công nghệ hiện đại nhất. Nếu bạn đang tìm kiếm một cái gì đó có thể làm cho nội thất của bạn trông tuyệt vời, đồng thời.
+              {{value.details}}
             </p>
             <div class="card_area">
               <div class="product_count d-inline-block">

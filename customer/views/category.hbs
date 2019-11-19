@@ -6,7 +6,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <p>Cửa hàng</p>
+                            <a href="/category"><p>Cửa hàng</p></a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,15 @@
                             <div class="widgets_inner">
                                 <ul class="list">
                                     <li>
-                                        <a href="#">Hoa quả và rau</a>
+                                        <a href="/category?q=thoi_trang_nam">Thời trang nam</a>
+                                    </li>
+                                     <li>
+                                        <a href="/category?q=thoi_trang_nu">Thời trang nữ</a>
+                                        
+                                    </li>
+                                     <li>
+                                        <a href="/category?q=giay">Giày</a>
+                                        
                                     </li>
                                     <li class="sub-menu">
                                         <a href="#Electronics" class=" d-flex justify-content-between">
@@ -37,30 +45,28 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="#Electronics">Thiết bị gia dụng</a>
+                                                <a href="/category?q=thiet_bi_gia_dung">Thiết bị gia dụng</a>
                                             </li>
                                             <li>
-                                                <a href="#Electronics">Điện thoại thông minh</a>
+                                                <a href="/category?q=dien_thoai_thong_minh">Điện thoại thông minh</a>
                                             </li>
                                             <li>
-                                                <a href="#Electronics">Dụng cụ nhà bếp</a>
+                                                <a href="/category?q=dung_cu_nha_bep">Dụng cụ nhà bếp</a>
                                             </li>
                                             <li>
-                                                <a href="#Electronics">Phụ kiện máy tính</a>
+                                                <a href="/category?q=phu_kien_may_tinh">Phụ kiện máy tính</a>
                                             </li>
                                             <li>
                                                 <a href="#Electronics">Thịt</a>
                                             </li>
                                         </ul>
                                     </li>
+                                   
                                     <li>
-                                        <a href="#">Nấu ăn</a>
+                                        <a href="/category?q=do_uong">Đồ uống</a>
                                     </li>
                                     <li>
-                                        <a href="#">Đồ uống</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Nhà vệ sinh</a>
+                                        <a href="/category?q=thuc_pham">Thực phẩm</a>
                                     </li>
                                 </ul>
                             </div>
@@ -168,10 +174,12 @@
                                 </div>
                             </div>
                         </div>
+                         {{#each list}}
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_category_product">
                                 <div class="single_category_img">
-                                    <img src="img/category/category_1.png" alt="">
+                                   <a href="/singleproduct?q={{this._id}}"> <img src="{{this.img}}" alt=""></a>
+
                                     <div class="category_social_icon">
                                         <ul>
                                             <li><a href="#"><i class="ti-heart"></i></a></li>
@@ -179,199 +187,13 @@
                                         </ul>
                                     </div>
                                     <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
+                                        <a href="/singleproduct?q={{this._id}}"><h5>{{this.name}}</h5></a>
+                                        <p>{{this.price}} $</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_2.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_3.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_4.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_5.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_6.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_7.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_8.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_9.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_10.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_11.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                                <div class="single_category_img">
-                                    <img src="img/category/category_12.png" alt="">
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-heart"></i></a></li>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <a href="/category/singleproduct"><h5>Áo thun dài tay</h5></a>
-                                        <p>$150.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                          {{/each}}
                         <div class="col-lg-12 text-center">
                             <a href="#" class="btn_2">Xem thêm</a>
                         </div>
