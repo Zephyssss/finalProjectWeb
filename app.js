@@ -5,8 +5,6 @@ var express = require('express');
 var path = require('path');
 const mongoose = require('mongoose');
 
-//const uri="mongodb+srv://luanpham:01667376890@cluster0-toeuz.gcp.mongodb.net/test?retryWrites=true&w=majority";
-
 mongoose.connect(process.env.URI, {useNewUrlParser: true});
 
 

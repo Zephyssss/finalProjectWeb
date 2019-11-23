@@ -1,30 +1,15 @@
 var express = require('express');
-const mongoose = require('mongoose');
-var db = mongoose.connection;
 var router = express.Router();
+const pro = require('../model/category');
 
 
-//create schame
-var categoryschema = new mongoose.Schema({
-  name: String,
-  price: String,
-  category: String,
-  details: String,
-  img: String
-},
-  {
-    collection: 'category'
-
-  });
-
-const cate = db.useDb("mydb").model("cate", categoryschema);
 router.get('/', async (req, res) => {
   let value
   if (typeof req.query.q === 'undefined') {
     try {
-      value = await cate.find({})
+      value = await pro.all();
     } catch (error) {
-      console.log("loi roi");
+      console.log("Error!");
       res.render('error');
 
     }
@@ -33,9 +18,9 @@ router.get('/', async (req, res) => {
   }
   else {
     try {
-      value = await cate.find({ 'categoryid': req.query.q})
+      value = await pro.allCate(req.query.q);
     } catch (error) {
-      console.log("loi roi");
+      console.log("Error!");
       res.render('error');
     }
     console.log("query la:" + req.query.q);
