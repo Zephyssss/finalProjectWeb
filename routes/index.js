@@ -6,11 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET users listing. */
-router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 /* GET Category page. */
 
 
@@ -18,9 +13,9 @@ router.get('/users', function(req, res, next) {
 //   res.render('singleproduct', { title: 'Single-Product' });
 // });
 
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
-});
+// router.get('/login', function(req, res, next) {
+//   res.render('login', { title: 'Login' });
+// });
 
 router.get('/tracking', function(req, res, next) {
   res.render('tracking', { title: 'Tracking' });
@@ -50,9 +45,9 @@ router.get('/forgetpw', function(req, res, next) {
   res.render('forgetpw', { title: 'Forget Password' });
 });
 
-router.get('/create', function(req, res, next) {
-  res.render('create', { title: 'Create' });
-});
+// router.get('/create', function(req, res, next) {
+//   res.render('create', { title: 'Create' });
+// });
 
 router.get('/trackoutput', function(req, res, next) {
   res.render('trackoutput', { title: 'Tracking' });

@@ -4,13 +4,18 @@ var logger = require('morgan');
 var express = require('express');
 var path = require('path');
 const mongoose = require('mongoose');
+const passport = require('passport');
+require('./passport');
+const session = require('express-session');
 
 mongoose.connect(process.env.URI, {useNewUrlParser: true});
 
+//require('./passport/index')(passport);
 
 var indexRouter = require('./routes/index');
 var categoryRouter = require('./routes/category');
 var singleproduct =require('./routes/singleproduct');
+const registerRouter = require('./components/users');
 
 
 var app = express();
@@ -24,10 +29,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
+//app.use(express.bodyParser());
+
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: true,
+//     saveUninitialized: true
+//   })
+// );
+app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/category',categoryRouter);
 app.use('/singleproduct',singleproduct);
+app.use('/',registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
