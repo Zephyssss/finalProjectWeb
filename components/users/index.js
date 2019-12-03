@@ -8,6 +8,8 @@ router.get('/login', function (req, res, next) {
     res.render('login', { title: 'Login' });
 });
 
+router.post('/login', userController.loginUser);
+
 router.get('/register', function (req, res, next) {
     res.render('register', { title: 'Register' });
 });
