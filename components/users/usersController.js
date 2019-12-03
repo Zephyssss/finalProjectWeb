@@ -8,7 +8,7 @@ module.exports.loginUser = async (req, res, next) => {
         passport.authenticate('local', {
             successRedirect: '/',
             failureRedirect: '/login',
-            failureFlash: false
+            failureFlash: true
         })(req, res, next);
     } catch (e) {
         next(e);
@@ -17,8 +17,7 @@ module.exports.loginUser = async (req, res, next) => {
 
 module.exports.createUser = async (req, res, next) => {
     try{
-        await UserService.createUser(req.body.name,req.body.username,req.body.password);
-        res.redirect('/');
+        await UserService.createUser(res,req.body.name,req.body.username,req.body.password);
     }catch(e){
         next(e);
     }

@@ -6,13 +6,13 @@ const User = require('../model/users');
 
 module.exports = function (passport) {
     passport.use(
-        new LocalStrategy({ usernameField: 'username' }, (username, password, done) => {
+        new LocalStrategy({passReqToCallback: true, usernameField: 'username' }, (req, username, password, done) => {
             // Match user
             User.findOne({
                 username: username
             }).then(user => {
                 if (!user) {
-                    return done(null, false, { message: 'That email is not registered' });
+                    return done(null, false, req.flash('error','That email is not registered'));
                 }
 
                 // Match password
@@ -21,7 +21,7 @@ module.exports = function (passport) {
                     if (isMatch) {
                         return done(null, user);
                     } else {
-                        return done(null, false, { message: 'Password incorrect' });
+                        return done(null, false, req.flash('error', 'Password incorrect'));
                     }
                 });
             });

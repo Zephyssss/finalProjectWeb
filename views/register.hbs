@@ -27,7 +27,15 @@
             <input type="text" class="form-control" name="name" placeholder="Địa chỉ" />
           </div>
         </div> --}}
-
+        <div class="col-md-12">
+          <div class="form-group">
+            {{#each errors}}
+            <span style="color: red;">
+              {{this.msg}}
+            </span><br>
+            {{/each}}
+          </div>
+        </div>
         <div class="col-md-12 text-right">
           <button type="submit" value="submit" class="btn_3">
             Đăng ký

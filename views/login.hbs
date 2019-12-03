@@ -42,6 +42,13 @@
                                     <input type="password" class="form-control" id="password" name="password" value=""
                                         placeholder="Mật khẩu">
                                 </div>
+                                <div class="col-md-12 form-group p_star">
+                                    {{#each errors}}
+                                    <span style="color: red;">
+                                        {{this}}
+                                    </span>
+                                    {{/each}}
+                                </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">
                                         <input type="checkbox" id="f-option" name="selector">

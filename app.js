@@ -3,6 +3,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var express = require('express');
 var path = require('path');
+const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
 require('./passport');
@@ -33,6 +34,17 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Connect flash
+app.use(flash());
+
+// // Global variables
+// app.use(function(req, res, next) {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   res.locals.error = req.flash('error');
+//   next();
+// });
 
 app.use('/', indexRouter);
 app.use('/category',categoryRouter);

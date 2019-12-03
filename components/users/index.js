@@ -5,13 +5,15 @@ const passport = require('../../passport');
 const userController = require('./usersController');
 
 router.get('/login', function (req, res, next) {
-    res.render('login', { title: 'Login' });
+    const errors = req.flash().error || [];
+    res.render('login', { title: 'Login' , errors});
 });
 
 router.post('/login', userController.loginUser);
 
 router.get('/register', function (req, res, next) {
-    res.render('register', { title: 'Register' });
+    const errors = req.flash().error || [];
+    res.render('register', { title: 'Register', errors });
 });
 
 router.post('/register', userController.createUser);
