@@ -14,9 +14,8 @@ mongoose.connect(process.env.URI, {useNewUrlParser: true});
 //require('./passport/index')(passport);
 
 var indexRouter = require('./routes/index');
-var categoryRouter = require('./routes/category');
-var singleproduct =require('./routes/singleproduct');
-const registerRouter = require('./components/users');
+const productRouter = require('./components/product');
+const userRouter = require('./components/users');
 
 
 var app = express();
@@ -47,9 +46,8 @@ app.use(flash());
 // });
 
 app.use('/', indexRouter);
-app.use('/category',categoryRouter);
-app.use('/singleproduct',singleproduct);
-app.use('/',registerRouter);
+app.use('/',productRouter);
+app.use('/',userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

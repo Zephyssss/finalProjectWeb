@@ -6,17 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET Category page. */
-
-
-// router.get('/category/singleproduct', function(req, res, next) {
-//   res.render('singleproduct', { title: 'Single-Product' });
-// });
-
-// router.get('/login', function(req, res, next) {
-//   res.render('login', { title: 'Login' });
-// });
-
 router.get('/tracking', function(req, res, next) {
   res.render('tracking', { title: 'Tracking' });
 });
@@ -44,10 +33,6 @@ router.get('/success', function(req, res, next) {
 router.get('/forgetpw', function(req, res, next) {
   res.render('forgetpw', { title: 'Forget Password' });
 });
-
-// router.get('/create', function(req, res, next) {
-//   res.render('create', { title: 'Create' });
-// });
 
 router.get('/trackoutput', function(req, res, next) {
   res.render('trackoutput', { title: 'Tracking' });
