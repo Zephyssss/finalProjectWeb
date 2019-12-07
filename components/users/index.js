@@ -6,7 +6,7 @@ const userController = require('./usersController');
 
 router.get('/login', function (req, res, next) {
     const errors = req.flash().error || [];
-    res.render('login', { title: 'Login' , errors});
+    res.render('login', { title: 'Login', errors });
 });
 
 router.post('/login', userController.loginUser);
@@ -17,5 +17,10 @@ router.get('/register', function (req, res, next) {
 });
 
 router.post('/register', userController.createUser);
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = router;
