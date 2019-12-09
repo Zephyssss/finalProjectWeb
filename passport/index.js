@@ -1,6 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-//const passport = require('passport')
 
 // Load User model
 const User = require('../model/users');
@@ -42,11 +41,5 @@ module.exports = function (passport) {
         } catch (err) {
             done(err);
         }
-        
-        // User.findById(id, function (err, user) {
-        //     done(err, user);
-        // });
     });
 };
-
-//module.exports = passport;

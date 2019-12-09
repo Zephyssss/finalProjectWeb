@@ -11,9 +11,7 @@ const session = require('express-session');
 
 mongoose.connect(process.env.URI, {useNewUrlParser: true});
 
-//require('./passport/index')(passport);
-
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const productRouter = require('./components/product');
 const userRouter = require('./components/users');
 
@@ -36,14 +34,6 @@ app.use(passport.session());
 
 // Connect flash
 app.use(flash());
-
-// // Global variables
-// app.use(function(req, res, next) {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   next();
-// });
 
 app.use('/', indexRouter);
 app.use('/',productRouter);

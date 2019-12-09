@@ -30,14 +30,14 @@
                         <div class="widgets_inner">
                             <ul class="list">
                                 <li>
-                                    <a href="/category?q=thoi_trang_nam">Thời trang nam</a>
+                                    <a onclick="addUrlParameter('q','thoi_trang_nam')">Thời trang nam</a>
                                 </li>
                                 <li>
-                                    <a href="/category?q=thoi_trang_nu">Thời trang nữ</a>
+                                    <a onclick="addUrlParameter('q','thoi_trang_nu')">Thời trang nữ</a>
 
                                 </li>
                                 <li>
-                                    <a href="/category?q=giay">Giày</a>
+                                    <a onclick="addUrlParameter('q','giay')">Giày</a>
 
                                 </li>
                                 <li class="sub-menu">
@@ -47,25 +47,25 @@
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="/category?q=thiet_bi_gia_dung">Thiết bị gia dụng</a>
+                                            <a onclick="addUrlParameter('q','thiet_bi_gia_dung')">Thiết bị gia dụng</a>
                                         </li>
                                         <li>
-                                            <a href="/category?q=dien_thoai_thong_minh">Điện thoại thông minh</a>
+                                            <a onclick="addUrlParameter('q','dien_thoai_thong_minh')">Điện thoại thông minh</a>
                                         </li>
                                         <li>
-                                            <a href="/category?q=dung_cu_nha_bep">Dụng cụ nhà bếp</a>
+                                            <a onclick="addUrlParameter('q','dung_cu_nha_bep')">Dụng cụ nhà bếp</a>
                                         </li>
                                         <li>
-                                            <a href="/category?q=phu_kien_may_tinh">Phụ kiện máy tính</a>
+                                            <a onclick="addUrlParameter('q','phu_kien_may_tinh')">Phụ kiện máy tính</a>
                                         </li>
                                     </ul>
                                 </li>
 
                                 <li>
-                                    <a href="/category?q=do_uong">Đồ uống</a>
+                                    <a onclick="addUrlParameter('q','do_uong')">Đồ uống</a>
                                 </li>
                                 <li>
-                                    <a href="/category?q=thuc_pham">Thực phẩm</a>
+                                    <a onclick="addUrlParameter('q','thuc_pham')">Thực phẩm</a>
                                 </li>
                             </ul>
                         </div>
@@ -147,6 +147,7 @@
                     </aside>
                 </div>
             </div>
+            
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-lg-12">
@@ -156,19 +157,29 @@
                             </div>
                             <div class="product_top_bar_iner product_bar_item d-flex">
                                 <div class="product_bar_single">
-                                    <select class="wide">
-                                        <option data-display="Sắp xếp">Sắp xếp</option>
-                                        <option value="1">Some option</option>
-                                        <option value="2">Another option</option>
-                                        <option value="3">Potato</option>
-                                    </select>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropup">
+                                        Sắp xếp
+                                        </button>
+                                        <div class="dropdown-menu">
+                                        <a class="dropdown-item" onclick="addUrlParameter('sort','1')">Giá tăng dần</a>
+                                        <a class="dropdown-item" onclick="addUrlParameter('sort','-1')">Giá giảm dần</a>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="product_bar_single">
-                                    <select>
-                                        <option data-display="Hiện thị 12">Hiện thị 12</option>
-                                        <option value="1">Hiện thị 20</option>
-                                        <option value="2">Hiện thị 30</option>
-                                    </select>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropup">
+                                        Hiện thị
+                                        </button>
+                                        <div class="dropdown-menu">
+                                        <a class="dropdown-item" onclick="addUrlParameter('limit','6')">Hiện thị 6</a>
+                                        <a class="dropdown-item" onclick="addUrlParameter('limit','12')">Hiện thị 12</a>
+                                        <a class="dropdown-item" onclick="addUrlParameter('limit','20')">Hiện thị 20</a>
+                                        <a class="dropdown-item" onclick="addUrlParameter('limit','30')">Hiện thị 30</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -196,13 +207,36 @@
                     </div>
                     {{/each}}
                     <div class="col-lg-12 text-center">
-                        <a href="#" class="btn_2">Xem thêm</a>
+                            <ul class="pagination justify-content-center">
+                                {{#each array}}
+                                <li class="page-item
+                                {{#if isActive}}
+                                active
+                                {{/if}}
+                                "><a class="page-link" onclick="addUrlParameter('skip',NumberSkip({{this.pagenum}}))">{{this.pagenum}}</a></li>
+                                {{/each}}
+                            </ul>
+                        <!--<a href="#" class="btn_2">Xem thêm</a>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+            <script>
+                function addUrlParameter(name, value) {
+                var searchParams = new URLSearchParams(window.location.search)
+                searchParams.set(name, value)
+                 window.location.search = searchParams.toString()
+                }
+            </script>
+
+            <script>
+                function NumberSkip(page) {
+                    return (page-1)*{{lim}};
+                }
+            </script>           
 <!--================End Category Product Area =================-->
 
 <!-- free shipping here -->

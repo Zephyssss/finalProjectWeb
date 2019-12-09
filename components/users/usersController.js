@@ -1,6 +1,5 @@
 const UserService = require('./usersService');
 const passport = require('passport');
-//require('../../passport');
 require('../../passport')(passport);
 
 module.exports.loginUser = async (req, res, next) => {
