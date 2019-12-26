@@ -9,11 +9,15 @@ const categoryschema = new mongoose.Schema({
     details: String,
     categoryid: String,
     img: String
-    },
+},
     {
         collection: 'category'
     });
+//categoryschema.index({"name": "text"});
+//db.collection.createIndex({"name":"text"});
+categoryschema.index({name: 'text'});
 
 const cate = db.useDb("mydb").model("cate", categoryschema);
+
 
 module.exports = cate;

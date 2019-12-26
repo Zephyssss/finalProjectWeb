@@ -118,8 +118,8 @@
         <div class="search_input" id="search_input_box">
             <div class="container ">
                 <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
+                    <input type="text" class="form-control" id="search_input" placeholder="Search Here" name="search">
+                    <button type="submit" class="btn" onsubmit="addUrlParameter('search','{{this.body.search}}')"></button>
                     <span class="ti-close" id="close_search" title="Close Search"></span>
                 </form>
             </div>
@@ -201,5 +201,11 @@
     </footer>
     <!--::footer_part end::-->
 </body>
-
+<script>
+    function addUrlParameter(name, value) {
+        var searchParams = new URLSearchParams(window.location.search)
+        searchParams.set(name, value)
+        window.location.search = searchParams.toString()
+    }
+</script>
 </html>

@@ -4,6 +4,7 @@ const user = require('../../model/users');
 module.exports.Category = async (req, res, next) => {
     let value;
     if (typeof req.query.q === 'undefined') {
+        let search_q=null;
         let sort_criteria=1;
         let limit_number=12;
         let skip_index=0;
@@ -20,6 +21,10 @@ module.exports.Category = async (req, res, next) => {
         if(typeof req.query.skip!='undefined')
         {
             skip_index=parseInt(req.query.skip);
+        }
+        if(typeof req.query.search!='undefined')
+        {
+            search_q=req.query.search;
         }
 
         try {
@@ -43,7 +48,7 @@ module.exports.Category = async (req, res, next) => {
         }
            
         try {
-            value = await productService.getAllQuery(sort_criteria,limit_number,skip_index);
+            value = await productService.getAllQuery(sort_criteria,limit_number,skip_index,search_q);
         } catch (error) {
             next(error);
         }     
@@ -52,6 +57,7 @@ module.exports.Category = async (req, res, next) => {
         
     }
     else {
+        let search_q=null;
         let sort_criteria=1;
         let limit_number=12;
         let skip_index=0;
@@ -68,6 +74,10 @@ module.exports.Category = async (req, res, next) => {
         if(typeof req.query.skip!='undefined')
         {
             skip_index=parseInt(req.query.skip);
+        }
+        if(typeof req.query.search!='undefined')
+        {
+            search_q=req.query.search;
         }
 
         try {
@@ -86,7 +96,7 @@ module.exports.Category = async (req, res, next) => {
         } 
 
         try {
-            value = await productService.getCateQuery(req.query.q,sort_criteria,limit_number,skip_index);
+            value = await productService.getCateQuery(req.query.q,sort_criteria,limit_number,skip_index,search_q);
         } catch (error) {
             next(error);
         }
