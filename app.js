@@ -6,18 +6,14 @@ var path = require('path');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
-require('./passport');
 const session = require('express-session');
-
 mongoose.connect(process.env.URI, {useNewUrlParser: true});
 
 const indexRouter = require('./routes/index');
 const productRouter = require('./components/product');
 const userRouter = require('./components/users');
 
-
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -31,6 +27,19 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use((req,res,next)=>{
+  if(req.user)
+  {
+    res.locals.isLoggedIn=true;
+    res.locals.fullName=req.user.name;
+  }
+  else{
+    res.locals.isLoggedIn=false;
+  }
+  next();
+})
 
 // Connect flash
 app.use(flash());

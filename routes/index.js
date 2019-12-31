@@ -4,7 +4,7 @@ const user = require('../model/users');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', user: req.user});
+  res.render('index', { title: 'Express'});
 });
 
 router.get('/tracking', function(req, res, next) {

@@ -156,7 +156,26 @@
                             <div class="single_product_menu product_bar_item">
                                 <h2>Danh sách sản phẩm</h2>
                             </div>
-                            <div class="product_top_bar_iner product_bar_item d-flex">
+                            <form action="/category" method="GET">
+                                <div class="product_top_bar_iner product_bar_item d-flex">
+                                    <div class="product_bar_single">
+                                        <select class="wide"  name="sort" onchange="this.form.submit()">
+                                            <option value="1" {{#if is1}}selected{{/if}}>Giá tăng dần</option>
+                                            <option value="-1"{{#if is_1}}selected{{/if}}>Giá giảm dần</option>
+                                        </select>
+                                    </div>
+                                    <div class="product_bar_single">
+                                        <select  name="limit" onchange="this.form.submit()">
+                                            <option value="6" {{#if is6}}selected{{/if}}>Hiển thị 6</option>
+                                            <option value="12"{{#if is12}}selected{{/if}}>Hiển thị 12</option>
+                                            <option value="20"{{#if is20}}selected{{/if}}>Hiển thị 20</option>
+                                            <option value="30" {{#if is30}}selected{{/if}}>Hiển thị 30</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form> 
+
+                            <!--<div class="product_top_bar_iner product_bar_item d-flex">
                                 <div class="product_bar_single">
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-primary dropdown-toggle"
@@ -191,6 +210,9 @@
                                     </div>
                                 </div>
                             </div>
+
+                            
+                            -->
                         </div>
                     </div>
                     {{#each list}}
@@ -236,18 +258,18 @@
 </section>
 
 <script>
-    function addUrlParameter(name, value) {
-        var searchParams = new URLSearchParams(window.location.search)
-        searchParams.set(name, value)
-        window.location.search = searchParams.toString()
-    }
-</script>
-
-<script>
     function NumberSkip(page) {
         return (page - 1) * {{ lim }}
     };
 </script>
+<script>
+     function addUrlParameter(name, value) {
+        var searchParams = new URLSearchParams(window.location.search)
+        searchParams.set(name, value)
+        window.location.search = searchParams.toString()
+     }
+</script>
+
 <!--================End Category Product Area =================-->
 
 <!-- free shipping here -->

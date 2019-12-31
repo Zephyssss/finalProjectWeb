@@ -4,6 +4,13 @@ const user = require('../../model/users');
 module.exports.Category = async (req, res, next) => {
     let value;
     if (typeof req.query.q === 'undefined') {
+        let is1=(req.query.sort==1);
+        let is_1=(req.query.sort==-1);
+        let is6=(req.query.limit==6);
+        let is12=(req.query.limit==12);
+        let is20=(req.query.limit==20);
+        let is30=(req.query.limit==30);
+
         let search_q=null;
         let sort_criteria=1;
         let limit_number=12;
@@ -52,7 +59,7 @@ module.exports.Category = async (req, res, next) => {
         } catch (error) {
             next(error);
         }     
-        res.render('category', { title: 'category', list: value, user: req.user,array:array,lim:limit_number})
+        res.render('category', { title: 'category', list: value,array:array,lim:limit_number,is1:is1,is_1:is_1,is6:is6,is12:is12,is20:is20,is30:is30})
         
         
     }
@@ -62,6 +69,13 @@ module.exports.Category = async (req, res, next) => {
         let limit_number=12;
         let skip_index=0;
         let total;
+
+        let is1=(req.query.sort==1);
+        let is_1=(req.query.sort==-1);
+        let is6=(req.query.limit==6);
+        let is12=(req.query.limit==12);
+        let is20=(req.query.limit==20);
+        let is30=(req.query.limit==30);
         
         if(typeof req.query.sort!='undefined')
         {
@@ -102,9 +116,9 @@ module.exports.Category = async (req, res, next) => {
         }
 
         if (value && value.length)
-            res.render('category', { title: value[0].category, list: value, user: req.user,array:array,lim:limit_number })
+            res.render('category', { title: value[0].category, list: value,array:array,lim:limit_number,is1:is1,is_1:is_1,is6:is6,is12:is12,is20:is20,is30:is30 })
         else
-            res.render('category', { list: value, user: req.user,array:array,lim:limit_number })       
+            res.render('category', { list: value,array:array,lim:limit_number,is1:is1,is_1:is_1,is6:is6,is12:is12,is20:is20,is30:is30 })       
     }
 }
 
@@ -116,5 +130,5 @@ module.exports.singlePro = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-    res.render('singleproduct', { value, user: req.user })
+    res.render('singleproduct', { value })
 }
