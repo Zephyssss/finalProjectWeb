@@ -23,4 +23,10 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+router.get('/user/info', (req, res, next) => {
+    res.render('user_info', {layout: '/layout.hbs', title: 'Thông tin cá nhân' });
+});
+
+router.post('/user/info', userController.updateUserInfo);
+
 module.exports = router;

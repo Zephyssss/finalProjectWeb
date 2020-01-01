@@ -34,6 +34,7 @@ app.use((req,res,next)=>{
   {
     res.locals.isLoggedIn=true;
     res.locals.fullName=req.user.name;
+    res.locals.user=req.user;
   }
   else{
     res.locals.isLoggedIn=false;

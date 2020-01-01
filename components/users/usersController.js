@@ -22,3 +22,12 @@ module.exports.createUser = async (req, res, next) => {
     }
     
 };
+
+module.exports.updateUserInfo = async (req, res, next) => {
+    const newinfo = {'name': req.body.name, 'sex': req.body.sex,'address': req.body.address,'phone': req.body.phone};
+    try {
+        await UserService.updateUserInfo(res,req.query.id,newinfo);
+    } catch (e) {
+        next(e);
+    }
+};

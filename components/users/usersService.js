@@ -28,3 +28,16 @@ module.exports.createUser = (res, name, username, password) => {
 
     }
 };
+
+module.exports.updateUserInfo = async (res, id, newinfo) => {
+    const result = await UserModel.updateOne({ '_id': id}, { $set: { 'name': newinfo.name , 'sex': newinfo.sex ,  'address': newinfo.address ,  'phone_number': newinfo.phone }}, (err, doc) => {
+        if (err) {
+            console.log("update document error");
+        } else {
+            console.log("update document success");
+            console.log(doc);
+        }
+    });
+    res.redirect('back');
+    return result.save();
+};
