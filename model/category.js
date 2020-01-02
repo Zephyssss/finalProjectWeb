@@ -8,7 +8,8 @@ const categoryschema = new mongoose.Schema({
     category: String,
     details: String,
     categoryid: String,
-    img: String
+    img: String,
+    views: { type: Number, default: 0 }
 },
     {
         collection: 'category'

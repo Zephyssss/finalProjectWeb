@@ -12,6 +12,7 @@ module.exports.getCate = async (id) => {
 
 module.exports.getById = async (id) => {
     const result = await ProductModel.findById(id);
+    await ProductModel.update({ '_id': id },{ $inc: { 'views': 1 } });
     return result;
 }
 

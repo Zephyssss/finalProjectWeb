@@ -20,7 +20,7 @@ module.exports.createUser = async (req, res, next) => {
     }catch(e){
         next(e);
     }
-    
+    res.redirect('/');
 };
 
 module.exports.updateUserInfo = async (req, res, next) => {
@@ -30,4 +30,5 @@ module.exports.updateUserInfo = async (req, res, next) => {
     } catch (e) {
         next(e);
     }
+    res.redirect('back');
 };

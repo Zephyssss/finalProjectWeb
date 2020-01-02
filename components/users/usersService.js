@@ -21,7 +21,7 @@ module.exports.createUser = (res, name, username, password) => {
             } else {
                 let hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
                 const newUser = new UserModel({ name, username, password: hash });
-                res.redirect('/');
+                
                 return newUser.save();
             }
         });
@@ -38,6 +38,5 @@ module.exports.updateUserInfo = async (res, id, newinfo) => {
             console.log(doc);
         }
     });
-    res.redirect('back');
     return result.save();
 };
