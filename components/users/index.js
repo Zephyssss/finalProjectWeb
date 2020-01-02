@@ -24,7 +24,13 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/user/info', (req, res, next) => {
-    res.render('user_info', {layout: '/layout.hbs', title: 'Thông tin cá nhân' });
+    if(res.locals.isLoggedIn)
+    {
+    res.render('user_info', { title: 'Thông tin cá nhân' });
+    }
+    else{
+        res.render('error');
+    }
 });
 
 router.post('/user/info', userController.updateUserInfo);

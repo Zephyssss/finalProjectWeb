@@ -1,4 +1,5 @@
 const ProductModel = require('../../model/category');
+const CommentModel=require('../../model/comment');
 
 module.exports.getAll = async () => {
     const result = await ProductModel.find({});
@@ -93,3 +94,19 @@ module.exports.cart = async (buff) => {
     }
     return arr;
 }
+
+module.exports.getComments= (q)=>{
+    const result = CommentModel.find({ 'productid': q });
+    return result;
+    }
+    
+    module.exports.saveComment= async (res,name,productid,comment)=>{
+    let newcomment;
+    try {
+    newcomment= new CommentModel({name,productid,comment,date:""});
+    } catch (error) {
+    throw(error)
+    }
+    newcomment.save();
+    
+    }

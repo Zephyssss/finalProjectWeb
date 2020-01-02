@@ -42,7 +42,7 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-11">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="/"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="/"> <img src="/img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -239,6 +239,16 @@
         else
             sessionStorage.setItem(id,1)
         console.log(sessionStorage)
+         let arr=[]
+    for(i=0;i<sessionStorage.length;i++)
+    {
+        let key=sessionStorage.key(i);
+        let value=sessionStorage.getItem(key);
+        var h= new object(key, value);
+        arr.push(h)
+    }
+    var data = JSON.stringify(arr);
+    document.getElementById("cartsession").value=data
     }
 
     function object(key, value){
