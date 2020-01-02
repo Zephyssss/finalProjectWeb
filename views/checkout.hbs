@@ -19,41 +19,20 @@
   <section class="checkout_area section_padding">
     <div class="container">
       <div class="returning_customer">
+      {{#if isLoggedIn}}
+      {{else}}
         <div class="check_title">
           <h2>
-            Phản hồi khách hàng?
+            Vui lòng đăng nhập để tiến hành thanh toán
             <a href="/login">Đăng nhập</a>
           </h2>
         </div>
-        <p>
-          Nếu bạn đã mua sắm với chúng tôi trước đây, vui lòng nhập thông tin của bạn vào các ô bên dưới. Nếu bạn là khách hàng mới, vui lòng tiếp tục với phần Thanh toán & Giao hàng
-        </p>
-        <form class="row contact_form" action="#">
-          <div class="col-md-6 form-group p_star">
-            <input type="text" class="form-control" id="name" name="name" value=" " />
-            <span class="placeholder" data-placeholder="Tài khoản hoặc email"></span>
-          </div>
-          <div class="col-md-6 form-group p_star">
-            <input type="password" class="form-control" id="password" name="password" value="" />
-            <span class="placeholder" data-placeholder="Mật khẩu"></span>
-          </div>
-          <div class="col-md-12 form-group">
-            <button type="submit" value="submit" class="btn_3">
-              Đăng nhập
-            </button>
-            <div class="creat_account">
-              <input type="checkbox" id="f-option" name="selector" />
-              <label for="f-option">Nhớ mật khẩu</label>
-            </div>
-            <a class="lost_pass" href="#">Quên mật khẩu?</a>
-          </div>
-        </form>
-      </div>
+      {{/if}}
       <div class="cupon_area">
         <div class="check_title">
           <h2>
             Nhập mã giảm giá?
-            <a href="#">Nhấn vào đây để nhập mã
+            <a href="#">Nhấn vào đây để nhận mã giảm giá
             </a>
           </h2>
         </div>
@@ -65,98 +44,61 @@
           <div class="col-lg-8">
             <h3>Chi tiết hóa đơn</h3>
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" />
-                <span class="placeholder" data-placeholder="Tên"></span>
+              <div class="col-md-7 form-group p_star">
+                <input type="text" class="form-control" id="first" name="name" value="{{user.name}}" placeholder="Họ và tên *"/>
               </div>
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="name" />
-                <span class="placeholder" data-placeholder="Họ"></span>
+              <div class="col-md-7 form-group p_star">
+                <input type="text" class="form-control" id="number" name="number" value="{{uesr.phone_number}}" placeholder="Số điện thoại *"/>
+              </div>
+              <div class="col-md-7 form-group p_star">
+                <input type="text" class="form-control" id="email" name="compemailany" value="{{user.username}}" placeholder="Địa chỉ Email *"/>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add1" name="add1" value="{{user.address}}" placeholder="Địa chỉ thứ nhất *"/>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add2" name="add2" placeholder="Địa chỉ thứ 2"/>
               </div>
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="company" name="company" placeholder="Tên công ty" />
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP *" />
               </div>
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" />
-                <span class="placeholder" data-placeholder="Số điện thoại"></span>
-              </div>
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany" />
-                <span class="placeholder" data-placeholder="Email"></span>
-              </div>
-              <div class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">Quốc gia</option>
-                  <option value="2">Quốc gia</option>
-                  <option value="4">Quốc gia</option>
-                </select>
-              </div>
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add1" />
-                <span class="placeholder" data-placeholder="Địa chỉ thứ 01"></span>
-              </div>
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add2" name="add2" />
-                <span class="placeholder" data-placeholder="Địa chỉ thứ 02"></span>
-              </div>
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="city" name="city" />
-                <span class="placeholder" data-placeholder="Thành phố"></span>
-              </div>
-              <div class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">Quận</option>
-                  <option value="2">Quận</option>
-                  <option value="4">Quận</option>
-                </select>
-              </div>
+              
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP" />
-              </div>
-              <div class="col-md-12 form-group">
-                <div class="creat_account">
-                  <input type="checkbox" id="f-option2" name="selector" />
-                  <label for="f-option2">Tạo tài khoản?</label>
-                </div>
-              </div>
-              <div class="col-md-12 form-group">
-                <div class="creat_account">
-                  <h3>Chi tiết giao hàng</h3>
-                  <input type="checkbox" id="f-option3" name="selector" />
-                  <label for="f-option3">Giao hàng ở một địa điểm khác?</label>
-                </div>
                 <textarea class="form-control" name="message" id="message" rows="1"
                   placeholder="Chú thích đơn hàng"></textarea>
               </div>
+
+              <input type="text" id="cartsession1" name="cartsession1" hidden>
+              <input type="text" id="userID" name="userID" value="{{user._id}}" hidden>
+
+              {{#if isLoggedIn}}
+              <div class="col-md-12 form-group">
+                <div class="creat_account">
+                  <button type="submit" class="btn_3" >Đặt hàng</button>
+                </div>
+              </div>
+              {{/if}}
+              {{#if isLoggedIn}}
+              {{else}}
+                <p>
+                  Vui lòng đăng nhập để tiến hành thanh toán
+                  <a href="/login">Đăng nhập</a>
+                </p>
+              {{/if}}
+                {{#each errors}}
+                  <span style="color: red;">
+                    {{this.msg}}
+                  </span><br>
+                {{/each}}
             </form>
-          </div>
+            </div>
           <div class="col-lg-4">
             <div class="order_box">
               <h2>Đơn hàng của bạn</h2>
               <ul class="list">
-                <li>
-                  <a href="#">Sản phẩm
-                    <span>Tổng</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dâu tươi
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Cà chua
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Bông cải tươi
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
+                <h2>
+                    <span>Bạn đã mua tổng cộng <span style="color:dodgerblue;" id="cartNum"></span> sản phẩm</span>
+                </h2>
               </ul>
               <ul class="list list_2">
                 <li>
@@ -178,11 +120,11 @@
               <div class="payment_item">
                 <div class="radion_btn">
                   <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">Kiểm tra đơn hàng</label>
+                  <label for="f-option5">Thanh toán khi nhận hàng</label>
                   <div class="check"></div>
                 </div>
                 <p>
-                  Vui lòng gửi séc đến Tên Cửa hàng, Phố Cửa hàng, Cửa hàng Thị trấn, Cửa hàng Bang / Quận, Mã bưu điện
+                  Khi nhận được hàng, bạn hãy kiểm tra sản phẩm và thanh toán cho shipper, phí thanh toán đã bao gồm phí vận chuyển
                 </p>
               </div>
               <div class="payment_item active">
@@ -207,12 +149,30 @@
         </div>
       </div>
     </div>
+  
   </section>
+  <script>
+    document.getElementById("cartNum").innerHTML=sessionStorage.getItem("number")
+    function object(key, value){
+        this.key=key;
+        this.value=value;
+    }
+    let arr1=[]
+    for(i=0;i<sessionStorage.length;i++)
+    {
+        let key=sessionStorage.key(i);
+        let value=sessionStorage.getItem(key);
+        var h= new object(key, value);
+        arr1.push(h)
+    }
+    let data1 = JSON.stringify(arr1);
+    document.getElementById("cartsession1").value=data1
+  </script>
   <!--================End Checkout Area =================-->
 
   <!-- subscribe_area part start-->
   <section class="instagram_photo">
-      <div class="container-fluid>
+      <div class="container-fluid">
           <div class="row">
               <div class="col-lg-12">
                   <div class="instagram_photo_iner">
@@ -241,6 +201,8 @@
           </div>
       </div>
   </section>
+
+  
   <!--::subscribe_area part end::-->
   <!-- jquery plugins here-->
   <script src="js/jquery-1.12.1.min.js"></script>

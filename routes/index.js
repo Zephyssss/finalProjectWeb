@@ -11,9 +11,6 @@ router.get('/tracking', function(req, res, next) {
   res.render('tracking', { title: 'Tracking' });
 });
 
-router.get('/checkout', function(req, res, next) {
-  res.render('checkout', { title: 'Checkout' });
-});
 
 router.get('/cart', function(req, res, next) {
   res.render('cart', { title: 'Cart' });

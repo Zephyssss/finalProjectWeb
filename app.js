@@ -12,7 +12,7 @@ mongoose.connect(process.env.URI, {useNewUrlParser: true});
 const indexRouter = require('./routes/index');
 const productRouter = require('./components/product');
 const userRouter = require('./components/users');
-
+const soldRouter = require('./components/sold');
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,7 +48,7 @@ app.use(flash());
 app.use('/', indexRouter);
 app.use('/',productRouter);
 app.use('/',userRouter);
-
+app.use('/',soldRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
