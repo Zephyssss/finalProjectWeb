@@ -79,3 +79,17 @@ module.exports.getCateQuery = async (id, s, l, sk, search) => {
     console.log(result)
     return result;
 }
+
+module.exports.cart = async (buff) => {
+    var list=JSON.parse(buff)
+    let arr=[]
+    for(i=0;i<list.length;i++)
+    {
+        if(list[i].key!='number')
+            {
+                let result = await ProductModel.findById(list[i].key);
+                arr.push(result)
+            }
+    }
+    return arr;
+}

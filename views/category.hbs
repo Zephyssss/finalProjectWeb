@@ -156,16 +156,15 @@
                             <div class="single_product_menu product_bar_item">
                                 <h2>Danh sách sản phẩm</h2>
                             </div>
-                            <form action="/category" method="GET">
                                 <div class="product_top_bar_iner product_bar_item d-flex">
                                     <div class="product_bar_single">
-                                        <select class="wide"  name="sort" onchange="this.form.submit()">
+                                        <select class="wide" id="sort-selected" onchange="changeSort()">
                                             <option value="1" {{#if is1}}selected{{/if}}>Giá tăng dần</option>
                                             <option value="-1"{{#if is_1}}selected{{/if}}>Giá giảm dần</option>
                                         </select>
                                     </div>
                                     <div class="product_bar_single">
-                                        <select  name="limit" onchange="this.form.submit()">
+                                        <select id="limit-selected" onchange="changeLimit()">
                                             <option value="6" {{#if is6}}selected{{/if}}>Hiển thị 6</option>
                                             <option value="12"{{#if is12}}selected{{/if}}>Hiển thị 12</option>
                                             <option value="20"{{#if is20}}selected{{/if}}>Hiển thị 20</option>
@@ -173,46 +172,6 @@
                                         </select>
                                     </div>
                                 </div>
-                            </form> 
-
-                            <!--<div class="product_top_bar_iner product_bar_item d-flex">
-                                <div class="product_bar_single">
-                                    <div class="dropdown">
-                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                            data-toggle="dropup">
-                                            Sắp xếp
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" onclick="addUrlParameter('sort','1')">Giá tăng
-                                                dần</a>
-                                            <a class="dropdown-item" onclick="addUrlParameter('sort','-1')">Giá giảm
-                                                dần</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product_bar_single">
-                                    <div class="dropdown">
-                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                            data-toggle="dropup">
-                                            Hiện thị
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" onclick="addUrlParameter('limit','6')">Hiện thị
-                                                6</a>
-                                            <a class="dropdown-item" onclick="addUrlParameter('limit','12')">Hiện thị
-                                                12</a>
-                                            <a class="dropdown-item" onclick="addUrlParameter('limit','20')">Hiện thị
-                                                20</a>
-                                            <a class="dropdown-item" onclick="addUrlParameter('limit','30')">Hiện thị
-                                                30</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            
-                            -->
                         </div>
                     </div>
                     {{#each list}}
@@ -224,7 +183,7 @@
                                 <div class="category_social_icon">
                                     <ul>
                                         <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
+                                        <li><a onclick=changeCart("{{this._id}}")><i class="ti-bag"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="category_product_text">
@@ -268,6 +227,16 @@
         searchParams.set(name, value)
         window.location.search = searchParams.toString()
      }
+</script>
+<script>
+    function changeLimit(){
+        const val = document.querySelectorAll("#limit-selected")[0].value;
+        addUrlParameter("limit",val);
+        }
+    function changeSort(){
+        const val = document.querySelectorAll("#sort-selected")[0].value;
+            addUrlParameter("sort",val);
+            }
 </script>
 
 <!--================End Category Product Area =================-->

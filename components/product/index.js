@@ -7,4 +7,6 @@ router.get('/category', productController.Category);
 
 router.get('/singleproduct', productController.singlePro);
 
+router.post('/cart',productController.cart);
+
 module.exports = router;

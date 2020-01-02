@@ -29,66 +29,48 @@
               </tr>
             </thead>
             <tbody>
+            
+            {{#if value}}
+            {{#each value}}
               <tr>
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/arrivel/arrivel_1.png" alt="" />
+                      <img src="{{this.img}}" alt="" />
                     </div>
                     <div class="media-body">
-                      <p>Cửa hàng tối giản để sử dụng đa mục đích</p>
+                      <p>{{this.name}}</p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <h5>$360.00</h5>
+                  <h5><span id="{{this._id}}c">{{this.price}}</span>$</h5>
                 </td>
                 <td>
                   <div class="product_count">
-                    <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
-                    <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                    <input class="input-number" type="text" value="1" min="0" max="100" id='{{this._id}}' onchange=changeNum("{{this._id}}")>
                   </div>
                 </td>
                 <td>
-                  <h5>$720.00</h5>
+                  <h5><span id='{{this._id}}$'></span>$</h5>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/arrivel/arrivel_2.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Cửa hàng tối giản để sử dụng đa mục đích</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                      <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                      <input class="input-number" type="text" value="1" min="0" max="10">
-                      <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-              </tr>
+              <script>
+                document.getElementById("{{this._id}}").value=sessionStorage.getItem("{{this._id}}");
+                var bill=parseInt('{{this.price}}')*parseInt(sessionStorage.getItem("{{this._id}}"));
+                console.log(bill)
+                document.getElementById("{{this._id}}$").innerHTML=bill;
+              </script>
+              {{/each}}
+              {{else}}
+              <tr class="bottom_button">
+                  <td></td>
+                  <td>Giỏ hàng rỗng</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              {{/if}}
+              
               <tr class="bottom_button">
                 <td>
                   <a class="btn_1" href="#">Cập nhật giỏ hàng</a>
@@ -108,7 +90,7 @@
                   <h5>Tổng phụ</h5>
                 </td>
                 <td>
-                  <h5>$2160.00</h5>
+                  <h5><span id="total123"></span>$</h5>
                 </td>
               </tr>
               <tr class="shipping_area">
@@ -165,6 +147,34 @@
         </div>
       </div>
   </section>
+
+              <script>
+                function changeNum(id)
+                {
+                  let kq =document.getElementById(id).value
+                  sessionStorage.setItem(id,kq);
+                  let id1=id+'$'
+                  let id2=id+'c'
+
+                  let price=document.getElementById(id2).innerHTML
+                  var bill=parseInt(price)*parseInt(sessionStorage.getItem(id));
+                  console.log(price)
+                  console.log(sessionStorage.getItem(id))
+                  console.log(bill)
+                  document.getElementById(id1).innerHTML=bill;
+                }
+                let total=0
+                for(i=0;i<sessionStorage.length;i++)
+                  {
+                      if(sessionStorage.key(i)!='number')
+                          {
+                              let id=sessionStorage.key(i)+'$'
+                              let totalsub=document.getElementById(id).innerHTML
+                              total=total+parseInt(totalsub)
+                          }
+                  }
+                document.getElementById("total123").innerHTML=total
+              </script>
   <!--================End Cart Area =================-->
   <!-- jquery plugins here-->
   <script src="js/jquery-1.12.1.min.js"></script>

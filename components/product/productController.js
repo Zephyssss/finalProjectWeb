@@ -132,3 +132,14 @@ module.exports.singlePro = async (req, res, next) => {
     }
     res.render('singleproduct', { value })
 }
+
+module.exports.cart = async (req, res, next) => {
+    let value
+    try {
+        value = await productService.cart(req.body.cartsession);
+
+    } catch (error) {
+        next(error);
+    }
+    res.render('cart', { title: 'Cart',value:value })
+}
