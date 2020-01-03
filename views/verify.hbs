@@ -1,0 +1,54 @@
+<section class="tracking_box_area section_padding">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      {{!-- <form class="row contact_form"> --}}
+        <div class="col-md-12">
+          <div class="form-group">
+            <input type="email" class="form-control" id="to" name="username"value="{{user.username}}" placeholder="Email" readonly>
+          </div>
+        </div>
+        <div class="col-md-12">
+
+        <div class="col-md-12 text-right">
+          <button id="send_email" class="btn_3">
+            Xác thực
+          </button>
+        </div>
+      {{!-- </form> --}}
+    </div>
+  </div>
+</section>
+
+-- <!-- jquery plugins here-->
+<script src="/js/jquery-1.12.1.min.js"></script>
+<!-- easing js -->
+<script src="/js/jquery.magnific-popup.js"></script>
+<!-- swiper js -->
+<script src="/js/mixitup.min.js"></script>
+<script src="/js/lightslider.min.js"></script>
+<!-- slick js -->
+<script src="/js/slick.min.js"></script>
+<script src="/js/jquery.counterup.min.js"></script>
+
+
+
+<!-- custom js -->
+<script src="/js/custom.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var from,to,subject,text;
+	$("#send_email").click(function(){		
+		to=$("#to").val();		
+		$("#message").text("Sending E-mail...Please wait");
+		$.get("http://0000:8088/user/emailverify/send",{to:to},function(data){
+            confirm.log("vo dc")
+		if(data=="sent")
+		{
+			$("#message").empty().html("<p>Email is been sent at "+to+" . Please check inbox !</p>");
+		}
+});
+	});
+});
+</script>

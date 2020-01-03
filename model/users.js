@@ -8,7 +8,9 @@ const useraccoutschema = new mongoose.Schema({
     password: String,
     phone_number: String,
     sex: Boolean,
-    address: String
+    address: String,
+    band:Boolean,
+    active:Boolean
     },
     {
         collection: 'useraccout'

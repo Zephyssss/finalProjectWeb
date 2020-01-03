@@ -23,7 +23,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-router.get('/user/info', (req, res, next) => {
+router.get('/info', (req, res, next) => {
     if(res.locals.isLoggedIn)
     {
     res.render('user_info', { title: 'Thông tin cá nhân' });
@@ -33,6 +33,12 @@ router.get('/user/info', (req, res, next) => {
     }
 });
 
-router.post('/user/info', userController.updateUserInfo);
+router.get('/emailverify/send',userController.sendemail);
+
+router.get('/emailverify',userController.emailverify);
+
+router.get('/emailverify/verify',userController.verify);
+
+router.post('/info', userController.updateUserInfo);
 
 module.exports = router;

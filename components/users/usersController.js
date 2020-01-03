@@ -13,6 +13,28 @@ module.exports.loginUser = async (req, res, next) => {
         next(e);
     }
 }
+module.exports.emailverify =(req,res,next)=>{
+    
+    res.render('verify',{title: "xác thực email"});
+}
+module.exports.verify =async (req,res,next) =>{
+    try {
+        console.log("verifing .....")
+    await UserService.verifyservice(req,res,next);
+        
+    } catch (error) {
+        
+    }
+    res.render('verifysuccess',{title:"Xác thực email",layout:false});
+}
+
+module.exports.sendemail= async(req,res,next) =>{
+    try {
+        await UserService.sendverification(req,res,next);
+    } catch (error) {
+        
+    }
+}
 
 module.exports.createUser = async (req, res, next) => {
     try{

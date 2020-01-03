@@ -47,7 +47,7 @@ app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/',productRouter);
-app.use('/',userRouter);
+app.use('/user',userRouter);
 app.use('/',soldRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
