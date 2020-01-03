@@ -3,8 +3,7 @@ const db = mongoose.connection;
 
 //create schame
 const CommentSchema = new mongoose.Schema({
-    idsp:String,
-    soluongsp: Number,
+    sp: Object,
     idUser: String,
     name: String,
     phone:String,
