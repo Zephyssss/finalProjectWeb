@@ -93,11 +93,11 @@
           aria-selected="false">Đặc điểm</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+        <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
           aria-selected="false">Bình luận</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+        <a class="nav-link " id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
           aria-selected="false">Đánh giá</a>
       </li>
     </ul>
@@ -196,7 +196,7 @@
           </table>
         </div>
       </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
         <div class="row">
           <div class="col-lg-6">
             <div class="comment_list">
@@ -216,8 +216,25 @@
                 </p>
               </div>
               {{/each}}
+              <ul class="pagination justify-content-center">
+                {{#each array}}
+                  <li class="page-item
+                    {{#if isActive}}
+                      active
+                    {{/if}}
+                    "><a class="page-link"
+                      onclick="addUrlParameter('skip',NumberSkip({{this.pagenum}}))">{{this.pagenum}}</a>
+                   </li>
+                {{/each}}
+              </ul>
             </div>
           </div>
+
+          <script>
+            function NumberSkip(page) {
+                return (page - 1) * 5
+            };
+        </script>
           <div class="col-lg-6">
 
             <div class="review_box">
@@ -253,7 +270,7 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+      <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
         <div class="row">
           <div class="col-lg-6">
             <div class="row total_rate">

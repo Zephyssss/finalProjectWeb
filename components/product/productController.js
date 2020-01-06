@@ -122,16 +122,35 @@ module.exports.cart = async (req, res, next) => {
 
 
 module.exports.singlePro = async (req, res, next) => {
-    let value, comments
+    let value, comments, total
+    let skip_index=0
+    let array = [];
+
+    if(typeof(req.query.skip) !='undefined')
+    {
+        skip_index=parseInt(req.query.skip)
+    }
     try {
         value = await productService.getById(req.query.q);
-        comments = await productService.getComments(req.query.q);
+        comments = await productService.getComments(req.query.q,skip_index,5);
         relation= await productService.Relation(req.query.q);
 
+        try {
+            total = await productService.getComments(req.query.q,0);
+        } catch (error) {
+            next(error);
+        }
+
+        for (let i = 0; i < Math.ceil(total.length /5); i++) {
+            array.push({ pagenum: i + 1 });
+            if (i === (skip_index / 5)) {
+                array[i].isActive = true;
+            } else array[i].isActive = false;
+        }
     } catch (error) {
         next(error);
     }
-    res.render('singleproduct', { value, comments,relation })
+    res.render('singleproduct', { value, comments,relation,array })
 }
 
 module.exports.postComment = async (req, res, next) => {

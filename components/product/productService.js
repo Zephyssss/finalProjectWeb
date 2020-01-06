@@ -25,9 +25,6 @@ module.exports.Relation = async (id) => {
     });
     for(i=0;i<result.length;i++)
     {
-        console.log("?????????????????????????")
-        console.log(result.length)
-
         if(result[i]._id==id)
         {
             result.splice(i,1);
@@ -120,12 +117,22 @@ module.exports.cart = async (buff) => {
     return arr;
 }
 
-module.exports.getComments= (q)=>{
-    const result = CommentModel.find({ 'productid': q });
+module.exports.getComments= (q,skip,lim)=>{
+    let limit=100
+    if(typeof(lim) !='undefined')
+    {
+        limit=parseInt( lim)
+    }
+    const result = CommentModel.find({ 'productid': q},
+    null,
+    {
+        skip: skip,
+        limit: limit
+    });
     return result;
     }
     
-    module.exports.saveComment= async (res,name,productid,comment)=>{
+module.exports.saveComment= async (res,name,productid,comment)=>{
     let newcomment;
     try {
     newcomment= new CommentModel({name,productid,comment,date:""});
@@ -133,5 +140,5 @@ module.exports.getComments= (q)=>{
     throw(error)
     }
     newcomment.save();
-    
-    }
+        
+}
