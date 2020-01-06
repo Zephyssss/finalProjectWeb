@@ -16,6 +16,30 @@ module.exports.getById = async (id) => {
     return result;
 }
 
+module.exports.Relation = async (id) => {
+    const temp= await ProductModel.findById(id);
+    const result = await ProductModel.find({ 'categoryid':temp.categoryid},
+    null,
+    {
+        limit: 5,
+    });
+    for(i=0;i<result.length;i++)
+    {
+        console.log("?????????????????????????")
+        console.log(result.length)
+
+        if(result[i]._id==id)
+        {
+            result.splice(i,1);
+            break;
+        }
+    }
+    if(result.length ==5)
+        result.splice(4,1);
+
+    return result;
+}
+
 module.exports.getAllQuery = async (s, l, sk, search) => {
     let result=null;
     if(search){

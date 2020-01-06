@@ -63,7 +63,7 @@
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="/login"> Đăng nhập </a>
+                                        <a class="dropdown-item" href="/user/login"> Đăng nhập </a>
                                         <a class="dropdown-item" href="/tracking">Theo dõi sản phẩm</a>
                                         <a class="dropdown-item" href="/checkout">Thanh toán</a>
                                         <a class="dropdown-item">
@@ -73,7 +73,9 @@
                                             </form>
                                         </a>
                                         <a class="dropdown-item" href="/confirm">Sản phẩm đã đặt</a>
-                                        <a class="dropdown-item" href="/create">Cập nhật tài khoản</a>
+                                        {{#if isLoggedIn}}
+                                        <a class="dropdown-item" href="/user/info?id={{user._id}}">Cập nhật tài khoản</a>
+                                        {{/if}}
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -93,10 +95,9 @@
                                         <img src="/img/123.jpg" width="25px" height="25px">
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <div class="single_product">
-                                                <a class="dropdown-item" href="/logout">Log out</a>
+                                                <a class="dropdown-item" href="/user/logout">Log out</a>
                                                 <a class="dropdown-item" href="/user/info?id={{user._id}}">Cập nhật tài khoản</a>
                                                 <a class="dropdown-item" href="/user/emailverify?id={{user._id}}">Xác thực email</a>
-
                                             </div>
                                         </div>
                                     </div>
@@ -240,6 +241,31 @@
         }
         else
             sessionStorage.setItem(id,1)
+        console.log(sessionStorage)
+         let arr=[]
+    for(i=0;i<sessionStorage.length;i++)
+    {
+        let key=sessionStorage.key(i);
+        let value=sessionStorage.getItem(key);
+        var h= new object(key, value);
+        arr.push(h)
+    }
+    var data = JSON.stringify(arr);
+    document.getElementById("cartsession").value=data
+    }
+
+    function changeCartSingle(id){
+        let add=parseInt(document.getElementById('changcartSingle').value);
+        let value=document.getElementById('cartnumber').innerHTML;
+        sessionStorage.setItem("number",parseInt(value)+add)
+        document.getElementById('cartnumber').innerHTML=parseInt(value)+add;
+        if(sessionStorage.getItem(id))
+        {
+            let res=parseInt(sessionStorage.getItem(id))+add;
+            sessionStorage.setItem(id, res)
+        }
+        else
+            sessionStorage.setItem(id,add)
         console.log(sessionStorage)
          let arr=[]
     for(i=0;i<sessionStorage.length;i++)

@@ -1,5 +1,5 @@
-//const ProductModel = require('../../model/category');
 const SoldModel = require('../../model/sold');
+const ProductModel=require('../../model/category')
 module.exports.createCheckout = async (res,buff,name, phone,email,add1, add2, zip,userid) => {
     
     let errors = [];
@@ -18,9 +18,11 @@ module.exports.createCheckout = async (res,buff,name, phone,email,add1, add2, zi
     if (!name || !phone||!email||!add1||!zip) {
         errors.push({ msg: 'Bạn cần điền hết các thông tin' });
     }
+
     
     if (errors.length > 0) {
         res.render('checkout', {errors });
+
     } else {
         for(i=0;i<list.length;i++)
         {
@@ -28,6 +30,9 @@ module.exports.createCheckout = async (res,buff,name, phone,email,add1, add2, zi
             {
                 list.splice(i,1);
                 break;
+            }
+            else{
+                await ProductModel.update({ '_id': list[i].key },{ $inc: { 'sold': parseInt(list[i].value) } });
             }
         }
         const newsold = new SoldModel({sp:list,idUser:userid,name:name,phone:phone,email:email,add1:add1,add2:address2,zip:zip,date:today,status:status});

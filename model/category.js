@@ -9,7 +9,8 @@ const categoryschema = new mongoose.Schema({
     details: String,
     categoryid: String,
     img: String,
-    views: { type: Number, default: 0 }
+    views: { type: Number, default: 0 },
+    sold: { type: Number, default: 0 }
 },
     {
         collection: 'category'

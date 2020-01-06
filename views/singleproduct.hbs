@@ -23,19 +23,16 @@
           <div id="vertical">
             {{!-- <div data-thumb="../img/product_details/prodect_details_1.png"> --}}
             <div data-thumb="{{value.img}}">
-
-              {{!-- <img src="../img/product_details/prodect_details_1.png" /> --}}
               <img src="{{value.img}}" />
-
             </div>
-            <div data-thumb="../img/product_details/prodect_details_2.png">
-              <img src="../img/product_details/prodect_details_2.png" />
+            <div data-thumb="{{value.img}}">
+              <img src="{{value.img}}" />
             </div>
-            <div data-thumb="../img/product_details/prodect_details_3.png">
-              <img src="../img/product_details/prodect_details_3.png" />
+            <div data-thumb="{{value.img}}">
+              <img src="{{value.img}}" />
             </div>
-            <div data-thumb="../img/product_details/prodect_details_4.png">
-              <img src="../img/product_details/prodect_details_4.png" />
+            <div data-thumb="{{value.img}}">
+              <img src="{{value.img}}" />
             </div>
           </div>
         </div>
@@ -62,11 +59,11 @@
           <div class="card_area">
             <div class="product_count d-inline-block">
               <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-              <input class="input-number" type="text" value="1" min="0" max="10">
+              <input class="input-number" type="text" value="1" min="1" max="30" id="changcartSingle">
               <span class="number-increment"> <i class="ti-plus"></i></span>
             </div>
             <div class="add_to_cart">
-              <a href="#" class="btn_3">Thêm vào giỏ</a>
+              <a onclick=changeCartSingle('{{value._id}}') class="btn_3">Thêm vào giỏ</a>
               <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
             </div>
             <div class="social_icon">
@@ -80,6 +77,7 @@
     </div>
   </div>
 </div>
+
 <!--================End Single Product Area =================-->
 
 <!--================Product Description Area =================-->
@@ -454,87 +452,32 @@
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="section_tittle text-center">
-          <h2>Bán chạy nhất</h2>
+          <h2>Sản phẩm liên quan</h2>
         </div>
       </div>
     </div>
     <div class="row">
+      {{#each relation}}
       <div class="col-lg-3 col-sm-6">
         <div class="single_category_product">
           <div class="single_category_img">
-            <img src="../img/category/category_2.png" alt="">
+            <a href="/singleproduct?q={{this._id}}"><img src="{{this.img}}" alt=""></a>
             <div class="category_social_icon">
               <ul>
                 <li><a href="#"><i class="ti-heart"></i></a></li>
-                <li><a href="#"><i class="ti-bag"></i></a></li>
+                <li><a onclick=changeCart("{{this._id}}")><i class="ti-bag"></i></a></li>
               </ul>
             </div>
             <div class="category_product_text">
-              <a href="/singleproduct">
-                <h5>Áo thun dài tay</h5>
+              <a href="/singleproduct?q={{this._id}}">
+                <h5>{{this.name}}</h5>
               </a>
-              <p>$150.00</p>
+              <p>{{this.price}}</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="single_category_product">
-          <div class="single_category_img">
-            <img src="../img/category/category_3.png" alt="">
-            <div class="category_social_icon">
-              <ul>
-                <li><a href="#"><i class="ti-heart"></i></a></li>
-                <li><a href="#"><i class="ti-bag"></i></a></li>
-              </ul>
-            </div>
-            <div class="category_product_text">
-              <a href="/singleproduct">
-                <h5>Áo thun dài tay</h5>
-              </a>
-              <p>$150.00</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="single_category_product">
-          <div class="single_category_img">
-            <img src="../img/category/category_4.png" alt="">
-            <div class="category_social_icon">
-              <ul>
-                <li><a href="#"><i class="ti-heart"></i></a></li>
-                <li><a href="#"><i class="ti-bag"></i></a></li>
-              </ul>
-            </div>
-            <div class="category_product_text">
-              <a href="/singleproduct">
-                <h5>Áo thun dài tay</h5>
-              </a>
-              <p>$150.00</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="single_category_product">
-          <div class="single_category_img">
-            <img src="../img/category/category_5.png" alt="">
-            <div class="category_social_icon">
-              <ul>
-                <li><a href="#"><i class="ti-heart"></i></a></li>
-                <li><a href="#"><i class="ti-bag"></i></a></li>
-              </ul>
-            </div>
-            <div class="category_product_text">
-              <a href="/singleproduct">
-                <h5>Áo thun dài tay</h5>
-              </a>
-              <p>$150.00</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
 </section>

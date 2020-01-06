@@ -24,7 +24,7 @@
         <div class="check_title">
           <h2>
             Vui lòng đăng nhập để tiến hành thanh toán
-            <a href="/login">Đăng nhập</a>
+            <a href="/user/login">Đăng nhập</a>
           </h2>
         </div>
       {{/if}}
@@ -82,10 +82,10 @@
               {{else}}
                 <p>
                   Vui lòng đăng nhập để tiến hành thanh toán
-                  <a href="/login">Đăng nhập</a>
+                  <a href="/user/login">Đăng nhập</a>
                 </p>
               {{/if}}
-                {{#each errors}}
+              {{#each errors}}
                   <span style="color: red;">
                     {{this.msg}}
                   </span><br>

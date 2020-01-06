@@ -13,7 +13,7 @@ module.exports.Category = async (req, res, next) => {
 
         let search_q = null;
         let sort_criteria = 1;
-        let limit_number = 12;
+        let limit_number = 6;
         let skip_index = 0;
         let total;
 
@@ -59,7 +59,7 @@ module.exports.Category = async (req, res, next) => {
     else {
         let search_q = null;
         let sort_criteria = 1;
-        let limit_number = 12;
+        let limit_number = 6;
         let skip_index = 0;
         let total;
 
@@ -126,11 +126,12 @@ module.exports.singlePro = async (req, res, next) => {
     try {
         value = await productService.getById(req.query.q);
         comments = await productService.getComments(req.query.q);
+        relation= await productService.Relation(req.query.q);
 
     } catch (error) {
         next(error);
     }
-    res.render('singleproduct', { value, comments })
+    res.render('singleproduct', { value, comments,relation })
 }
 
 module.exports.postComment = async (req, res, next) => {
