@@ -1,5 +1,6 @@
 const SoldModel = require('../../model/sold');
-const ProductModel=require('../../model/category')
+const ProductModel=require('../../model/category') 
+
 module.exports.createCheckout = async (res,buff,name, phone,email,add1, add2, zip,userid) => {
     
     let errors = [];
@@ -39,4 +40,23 @@ module.exports.createCheckout = async (res,buff,name, phone,email,add1, add2, zi
         return newsold.save();
     }
     
+}
+module.exports.getSold = async (userid) => {
+    let value=await SoldModel.find({'idUser':userid})
+    let result=[]
+    for(i=0;i<value.length;i++)
+    {
+        let obj=value[i].sp
+        for(j=0;j<obj.length;j++)
+        {
+            let product=await ProductModel.findById(obj[j].key);
+            product.soluong=parseInt(obj[j].value)
+            product.thanhtien= product.price*product.soluong;
+            product.ngaydat= value[i].date.toString().substring(3,15)
+            product.trangthai=value[i].status
+            result.push(product)
+        }
+
+    }
+    return result;
 }

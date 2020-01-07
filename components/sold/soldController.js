@@ -10,3 +10,13 @@ module.exports.createCheckout = async (req, res, next) => {
     }
     res.redirect('/');
 }
+
+module.exports.getSold = async (req, res, next) => {
+    let value
+    try {
+         value= await soldService.getSold(req.body.userIDLayout);
+    } catch (e) {
+        next(e);
+    }
+    res.render('confirm',{value});
+}

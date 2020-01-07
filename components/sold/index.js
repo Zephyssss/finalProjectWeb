@@ -9,4 +9,6 @@ router.get('/checkout', function (req, res, next) {
     res.render('checkout', { title: 'Check out', errors });
 });
 
+router.post('/confirm',soldController.getSold)
+
 module.exports = router;

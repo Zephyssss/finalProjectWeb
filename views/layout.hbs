@@ -64,7 +64,6 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                         <a class="dropdown-item" href="/user/login"> Đăng nhập </a>
-                                        <a class="dropdown-item" href="/tracking">Theo dõi sản phẩm</a>
                                         <a class="dropdown-item" href="/checkout">Thanh toán</a>
                                         <a class="dropdown-item">
                                             <form action="/cart" method="POST">
@@ -72,7 +71,12 @@
                                                 <span onclick="document.forms[0].submit()">Giỏ hàng</span>
                                             </form>
                                         </a>
-                                        <a class="dropdown-item" href="/confirm">Sản phẩm đã đặt</a>
+                                        <a class="dropdown-item">
+                                            <form action="/confirm" method="POST">
+                                                <input type="text" id="userID" name="userIDLayout" value="{{user._id}}" hidden>
+                                                <span onclick="document.forms[1].submit()">Lịch sử mua hàng</span>
+                                            </form>
+                                        </a>
                                         {{#if isLoggedIn}}
                                         <a class="dropdown-item" href="/user/info?id={{user._id}}">Cập nhật tài khoản</a>
                                         {{/if}}
