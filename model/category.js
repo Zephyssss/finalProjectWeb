@@ -10,16 +10,14 @@ const categoryschema = new mongoose.Schema({
     categoryid: String,
     img: String,
     views: { type: Number, default: 0 },
-    sold: { type: Number, default: 0 }
+    sold: { type: Number, default: 0 },
+    brand:{ type: String, default: "" },
+    color: { type: String, default: "" }
 },
     {
         collection: 'category'
     });
-//categoryschema.index({"name": "text"});
-//db.collection.createIndex({"name":"text"});
-categoryschema.index({name: 'text'});
+categoryschema.index({'$**': 'text'});
 
 const cate = db.useDb("mydb").model("cate", categoryschema);
-
-
 module.exports = cate;

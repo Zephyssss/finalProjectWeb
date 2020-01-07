@@ -3,6 +3,7 @@ const user = require('../../model/users');
 
 module.exports.Category = async (req, res, next) => {
     let value;
+    let total;
     if (typeof req.query.q === 'undefined') {
         let is1 = (req.query.sort == 1);
         let is_1 = (req.query.sort == -1);
@@ -11,11 +12,11 @@ module.exports.Category = async (req, res, next) => {
         let is20 = (req.query.limit == 20);
         let is30 = (req.query.limit == 30);
 
-        let search_q = null;
+        let search_q = "";
         let sort_criteria = 1;
         let limit_number = 6;
         let skip_index = 0;
-        let total;
+        
 
         if (typeof req.query.sort != 'undefined') {
             sort_criteria = req.query.sort;
@@ -35,6 +36,18 @@ module.exports.Category = async (req, res, next) => {
         } catch (error) {
             next(error);
         }
+        if(typeof req.query.b!='undefined')
+            {
+                for(i=0;i<total.length;i++)
+                {
+                    if(!total[i].brand.includes(req.query.b))
+                    {
+                        total.splice(i,1);
+                        i=i-1
+                    }
+                }
+                search_q=search_q+" "+req.query.b
+            }
         let array = [];
         for (let i = 0; i < Math.ceil(total.length / limit_number); i++) {
             array.push({ pagenum: i + 1 });
@@ -87,6 +100,21 @@ module.exports.Category = async (req, res, next) => {
             total = await productService.getCate(req.query.q);
         } catch (error) {
             next(error);
+        }
+
+        if(typeof req.query.b!='undefined')
+            {
+                for(i=0;i<total.length;i++)
+                {
+                    if(!total[i].brand.includes(req.query.b))
+                    {
+                        total.splice(i,1);
+                        i=i-1
+                    }
+                }
+            }
+        if(typeof req.query.b!='undefined'){
+            search_q=search_q+" "+req.query.b
         }
         let array = [];
         for (let i = 0; i < Math.ceil(total.length / limit_number); i++) {

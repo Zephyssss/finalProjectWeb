@@ -40,10 +40,10 @@ module.exports.Relation = async (id) => {
 module.exports.getAllQuery = async (s, l, sk, search) => {
     let result=null;
     if(search){
-        let a="\"";
-        const t=search.replace('+',' ');
-        a=a.concat(t,"\"");
-        result = await ProductModel.find({$text:{$search: a}},
+        // let a="\"";
+        // const t=search.replace('+',' ');
+        // a=a.concat(t,"\"");
+        result = await ProductModel.find({$text:{$search: search}},
             null,
             {
                 skip: sk,
@@ -72,11 +72,11 @@ module.exports.getCateQuery = async (id, s, l, sk, search) => {
     console.log(search)
     if(search)
     {
-        let a="\"";
-        const t=search.replace('+',' ');
-        a=a.concat(t,"\"");
-        console.log("có search")
-        result = await ProductModel.find({ 'categoryid': id,$text:{$search: a}},
+        // let a="\"";
+        // const t=search.replace('+',' ');
+        // a=a.concat(t,"\"");
+        // console.log("có search")
+        result = await ProductModel.find({ 'categoryid': id,$text:{$search: search}},
             null,
             {
                 skip: sk,
