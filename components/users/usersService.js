@@ -16,7 +16,6 @@ module.exports.createUser = (res, name, username, password) => {
     if (errors.length > 0) {
         res.render('register', { errors });
     } else {
-
         UserModel.findOne({ username: username }).then(user => {
             if (user) {
                 errors.push({ msg: 'Email already exists' });
@@ -48,8 +47,8 @@ module.exports.sendverification = (req, res, next, content) => {
     var smtpTransport = nodemailer.createTransport({
         service: "Gmail",
         auth: {
-            user: "lannguyenhcm13101999@gmail.com",
-            pass: "01667376890aa"
+            user: "webmanager61@gmail.com",
+            pass: "01667376890"
         }
     });
     var mailOptions;
@@ -100,8 +99,7 @@ module.exports.verifyservice = async (req, res, next) => {
     }
 }
 
-module.exports.checkcode = async (codecheck, username) => {
-
+module.exports.checkcode = async (res,codecheck, username) => {
     let code;
     await VerifyModel.findOne({ userid: username }).then(value => {
         if (value) {
@@ -109,11 +107,26 @@ module.exports.checkcode = async (codecheck, username) => {
             console.log(value);
         }
     });
+
     if (code == codecheck) {
         await this.deleteverifycode(username);
         return true;
     }
     return false;
+}
+
+module.exports.isActive=async(res,username)=>{
+    let active;
+    await UserModel.findOne({ username: username }).then(value => {
+        if (value) {
+            active = value.active;
+            console.log(value);
+        }
+    });
+    if(active){
+        return true;
+    }
+    return false
 }
 module.exports.changeuserpw = async (username, password) => {
     let hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));

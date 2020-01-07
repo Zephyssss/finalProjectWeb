@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 
 // Load User model
 const User = require('../model/users');
-
 module.exports = function (passport) {
     passport.use(
         new LocalStrategy({passReqToCallback: true, usernameField: 'username' }, (req, username, password, done) => {
@@ -14,7 +13,9 @@ module.exports = function (passport) {
                 if (!user) {
                     return done(null, false, req.flash('error','That email is not registered'));
                 }
-
+                if(user.band==true){
+                    return done(null, false, req.flash('error','This account was ban'));
+                }
                 // Match password
                 bcrypt.compare(password, user.password, (err, isMatch) => {
                     if (err) throw err;
@@ -27,7 +28,6 @@ module.exports = function (passport) {
             });
         })
     );
-
     passport.serializeUser(function (user, done) {
         done(null, user.id);
     });

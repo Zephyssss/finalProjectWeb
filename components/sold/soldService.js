@@ -37,6 +37,7 @@ module.exports.createCheckout = async (res,buff,name, phone,email,add1, add2, zi
             }
         }
         const newsold = new SoldModel({sp:list,idUser:userid,name:name,phone:phone,email:email,add1:add1,add2:address2,zip:zip,date:today,status:status});
+        res.redirect('/');
         return newsold.save();
     }
     

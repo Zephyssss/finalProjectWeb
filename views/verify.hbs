@@ -45,7 +45,7 @@ $(document).ready(function(){
 	$("#send_email").click(function(){		
 		to=$("#to").val();		
 		$("#message").text("Sending E-mail...Please wait");
-		$.get("http://0000:8088/user/emailverify/send",{to:to},function(data){
+		$.get("emailverify/send",{to:to},function(data){
             confirm.log("vo dc")
 		if(data=="sent")
 		{

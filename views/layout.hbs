@@ -99,9 +99,10 @@
                                         <img src="/img/123.jpg" width="25px" height="25px">
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <div class="single_product">
-                                                <a class="dropdown-item" href="/user/logout">Log out</a>
-                                                <a class="dropdown-item" href="/user/info?id={{user._id}}">Cập nhật tài khoản</a>
+                                                 <a class="dropdown-item" href="/user/info?id={{user._id}}">Cập nhật tài khoản</a>
                                                 <a class="dropdown-item" href="/user/emailverify?id={{user._id}}">Xác thực email</a>
+                                                <a class="dropdown-item" href="/user/changepw?id={{user._id}}">Thay đổi mật khẩu</a>
+                                                <a class="dropdown-item" href="/user/logout">Log out</a>
                                             </div>
                                         </div>
                                     </div>
@@ -235,6 +236,7 @@
         document.getElementById('cartnumber').innerHTML=sessionStorage.getItem('number')
         
     function changeCart(id){
+        alert("Đã thêm vào giỏ hàng");
         let value=document.getElementById('cartnumber').innerHTML;
         sessionStorage.setItem("number",parseInt(value)+1)
         document.getElementById('cartnumber').innerHTML=parseInt(value)+1;
