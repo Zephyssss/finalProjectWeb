@@ -53,6 +53,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link" href="/">Trang chủ</a>
+                                    <span id='resetCart' hidden>{{resetCart}}</span>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/category">Cửa hàng</a>
@@ -63,7 +64,10 @@
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        {{#if isLoggedIn}}
+                                        {{else}}
                                         <a class="dropdown-item" href="/user/login"> Đăng nhập </a>
+                                        {{/if}}
                                         <a class="dropdown-item" href="/checkout">Thanh toán</a>
                                         <a class="dropdown-item">
                                             <form action="/cart" method="POST">
@@ -226,6 +230,12 @@
     <!--::footer_part end::-->
 </body>
 <script>
+    if(document.getElementById('resetCart').innerHTML==='1')
+    {
+        sessionStorage.clear();
+        document.getElementById('cartnumber').innerHTML='0'
+        document.getElementById('resetCart').innerHTML='0'
+    }
     function addUrlParameter(name, value) {
         var searchParams = new URLSearchParams(window.location.search)
         searchParams.set(name, value) 

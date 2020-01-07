@@ -4,7 +4,8 @@ const user = require('../model/users');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express'});
+  let reset=req.query.valid
+  res.render('index', { title: 'Express',resetCart: reset});
 });
 
 router.get('/tracking', function(req, res, next) {

@@ -36,8 +36,9 @@ module.exports.createCheckout = async (res,buff,name, phone,email,add1, add2, zi
                 await ProductModel.update({ '_id': list[i].key },{ $inc: { 'sold': parseInt(list[i].value) } });
             }
         }
+        let resetCart=1
         const newsold = new SoldModel({sp:list,idUser:userid,name:name,phone:phone,email:email,add1:add1,add2:address2,zip:zip,date:today,status:status});
-        res.redirect('/');
+        res.redirect('/?valid=1',);
         return newsold.save();
     }
     
