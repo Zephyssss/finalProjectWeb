@@ -32,13 +32,22 @@ router.get('/info', (req, res, next) => {
         res.render('error');
     }
 });
+router.get('/changepw',userController.getChangePW);
 
-router.get('/emailverify/send',userController.sendemail);
+router.get('/emailverify/send',userController.sendemailverify);
 
 router.get('/emailverify',userController.emailverify);
 
 router.get('/emailverify/verify',userController.verify);
 
 router.post('/info', userController.updateUserInfo);
+
+router.get('/forgetpw/send',userController.sendforgetpwcode);
+
+router.get('/forgetpw',userController.forgetpass);
+
+router.post('/forgetpw',userController.forgotpasspost);
+
+router.post('/changepw',userController.postChangePW);
 
 module.exports = router;

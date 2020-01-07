@@ -4,7 +4,8 @@ const db = mongoose.connection;
 //create schame
 const verifyschema = new mongoose.Schema({
     userid:String,
-    id:Number
+    id:Number,
+    code:Number
     },
     {
         collection: 'verifyid'

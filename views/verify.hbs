@@ -1,20 +1,23 @@
 <section class="tracking_box_area section_padding">
   <div class="container">
     <div class="row align-items-center justify-content-center">
-      {{!-- <form class="row contact_form"> --}}
         <div class="col-md-12">
           <div class="form-group">
             <input type="email" class="form-control" id="to" name="username"value="{{user.username}}" placeholder="Email" readonly>
           </div>
         </div>
         <div class="col-md-12">
-
+          {{#if user.active}}
+  <div class="col-md-12 text-right">
+         <h3>Email Đã được xác thực</h3>
+        </div>
+          {{else}}
         <div class="col-md-12 text-right">
           <button id="send_email" class="btn_3">
             Xác thực
           </button>
         </div>
-      {{!-- </form> --}}
+        {{/if}}
     </div>
   </div>
 </section>
