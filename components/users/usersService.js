@@ -23,7 +23,7 @@ module.exports.createUser = (res, name, username, password) => {
             } else {
                 let hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
                 const newUser = new UserModel({ name, username, password: hash, active: false });
-
+                res.redirect('/');
                 return newUser.save();
             }
         });
@@ -32,7 +32,7 @@ module.exports.createUser = (res, name, username, password) => {
 };
 
 module.exports.updateUserInfo = async (res, id, newinfo) => {
-    const result = await UserModel.updateOne({ '_id': id }, { $set: { 'name': newinfo.name, 'sex': newinfo.sex, 'address': newinfo.address, 'phone_number': newinfo.phone } }, (err, doc) => {
+     await UserModel.updateOne({ '_id': id }, { $set: { 'name': newinfo.name, 'sex': newinfo.sex, 'address': newinfo.address, 'phone_number': newinfo.phone } }, (err, doc) => {
         if (err) {
             console.log("update document error");
         } else {
