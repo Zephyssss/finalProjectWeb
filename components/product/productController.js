@@ -46,7 +46,7 @@ module.exports.Category = async (req, res, next) => {
                         i=i-1
                     }
                 }
-                search_q=search_q+" "+req.query.b
+                search_q=req.query.b
             }
         let array = [];
         for (let i = 0; i < Math.ceil(total.length / limit_number); i++) {
@@ -114,7 +114,7 @@ module.exports.Category = async (req, res, next) => {
                 }
             }
         if(typeof req.query.b!='undefined'){
-            search_q=search_q+" "+req.query.b
+            search_q=req.query.b
         }
         let array = [];
         for (let i = 0; i < Math.ceil(total.length / limit_number); i++) {
