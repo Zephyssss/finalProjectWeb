@@ -40,7 +40,7 @@ module.exports.updateUserInfo = async (res, id, newinfo) => {
             console.log(doc);
         }
     });
-    return result.save();
+   // return result.save();
 };
 
 module.exports.sendverification = (req, res, next, content) => {
@@ -94,6 +94,7 @@ module.exports.verifyservice = async (req, res, next) => {
         res.end("<h1> Successfully verified</h1>");
     }
     else {
+        await VerifyModel.deleteMany({userid:req.query.userid});
         console.log("email is not verified");
         res.end("<h1>Bad Request</h1>");
     }
@@ -112,6 +113,8 @@ module.exports.checkcode = async (res,codecheck, username) => {
         await this.deleteverifycode(username);
         return true;
     }
+    await VerifyModel.deleteMany({userid:username});
+    
     return false;
 }
 
